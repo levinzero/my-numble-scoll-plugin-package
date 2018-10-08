@@ -1,0 +1,27 @@
+@digit-box-height: 30px;
+@index-page-width: 300px;
+
+.digitBox{
+    text-align: center;
+    height: @digit-box-height;
+    line-height: @digit-box-height;
+    width: 30px;
+    overflow: hidden;
+    background: #714506;
+    float: left;
+    border-radius: 5px;
+    margin-right: 8px;
+    color: #9a6313;
+    font-weight: 700;
+    font-size: 20px;
+    .digitScroll{
+        
+        &>div {
+            height:  @digit-box-height;
+            line-height: @digit-box-height;
+            color: #fff000;
+            border-radius: 0;
+        }
+    }
+}
+
