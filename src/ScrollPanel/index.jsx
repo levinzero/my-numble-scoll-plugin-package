@@ -21,7 +21,6 @@ class ScrollPanel extends Component {
                 <ScrollNum key={index} digit={d} />
               )
             }
-            <div className='unit' style={{height:"100%"}}><span>位</span></div>
           </div>
         )
     }

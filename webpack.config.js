@@ -48,12 +48,12 @@ module.exports = {
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
         // publicPath: '/'
     },
     plugins: [
         // new webpack.HotModuleReplacementPlugin()
-        new HtmlWebpackPlugin({title: 'scroll-num'}),
+        // new HtmlWebpackPlugin({title: 'scroll-num'}),
         // new CleanWebpackPlugin(['dist'])
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
