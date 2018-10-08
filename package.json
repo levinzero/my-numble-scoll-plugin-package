@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --progress --inline --colors --host 0.0.0.0 --port 8080"
+    "start": "webpack-dev-server --progress --inline --colors --host 0.0.0.0 --port 8080",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,8 @@
   },
   "homepage": "https://github.com/levinzero/my-numble-scoll-plugin-package#readme",
   "dependencies": {
+    "classname": "0.0.0",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
