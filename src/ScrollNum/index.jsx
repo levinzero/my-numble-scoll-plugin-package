@@ -3,7 +3,7 @@ import PropsTypes from 'prop-types'
 import ClassNames from 'classnames'
 import { Motion, spring } from 'react-motion'
 import style from './index.less'
-
+import { optionStyle } from '../main'
 
 
 class ScrollNum extends Component {
@@ -38,7 +38,7 @@ class ScrollNum extends Component {
     componentWillReceiveProps(props) {
         const { digit } = props
         const nowDidgit = this.props.digit
-        if(digit == nowDidgit){
+        if (digit == nowDidgit) {
             return
         }
         const scrollData = this.prepareItems(digit)
@@ -57,6 +57,7 @@ class ScrollNum extends Component {
 
     prepareItems(digit) {
         const initDigit = this.props.digit
+        const { initHeight } = this.props
         const targetDigit = digit
         let dif = targetDigit - initDigit
         if (targetDigit === initDigit) {
@@ -75,32 +76,48 @@ class ScrollNum extends Component {
             if (items[i] > 9) { items[i] -= 10 }
         }
 
-        return { items, scrollHeight: 30 * (dif) }
+        return { items, scrollHeight: initHeight * (dif) }
     }
-    
-    
+
+
 
     render() {
         const { animationStart, items, scrollHeight } = this.state
         // const { initDigit, targetDigit } = this.state
         // console.log(items)
+        const { Consumer } = optionStyle
+
         return (
             <Motion style={{ y: animationStart ? spring(scrollHeight) : 0 }}>
                 {
                     ({ y }) => (
-                        <div
-                            className={style.digitBox}
-                        >
-                            <div
-                                className={style.digitScroll}
-                                style={{
-                                    WebkitTransform: `translate3d(0, -${y}px, 0)`,
-                                    transform: `translate3d(0, -${y}px, 0)`,
-                                }}
-                            >
-                                {items.map((item, index) => <div key={index}>{item}</div>)}
-                            </div>
-                        </div>
+                        <Consumer>
+                            {value => {
+                                ("WebkitTransform" in value.digitScroll) && delete value.digitScroll["WebkitTransform"]
+                                ("transform" in value.digitScroll) && delete value.digitScroll["transform"]          
+                                return (
+                                    <div
+                                        className={style.digitBox}
+                                        style={value.digitBox ? value.digitBox : {}}
+                                    >
+                                        <div
+                                            className={style.digitScroll}
+                                            style={{
+                                                WebkitTransform: `translate3d(0, -${y}px, 0)`,
+                                                transform: `translate3d(0, -${y}px, 0)`,
+                                                ...value.digitScroll
+                                            }}
+                                        >
+                                            {items.map((item, index) => <div key={index} style={{
+                                                lineHeight: value.digitBox.height,
+                                                height: value.digitBox.height,
+                                                ...value.fontStyle
+                                            }}>{item}</div>)}
+                                        </div>
+                                    </div>
+                                )
+                            }}
+                        </Consumer>
                     )}
             </Motion>
         )

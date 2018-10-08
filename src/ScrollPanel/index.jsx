@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import style from './index.less'
 import ScrollNum from '../ScrollNum'
+import {optionStyle} from '../main'
 
 /*eslint-disable */
 class ScrollPanel extends Component {
@@ -14,11 +15,15 @@ class ScrollPanel extends Component {
             parseInt((value % 1000)/ 100, 0),
             parseInt((value % 100) / 10, 0),
             value % 10]
+        const {Consumer} = optionStyle
         return (
           <div className={style.scrollPanel}>
             {
               digitArray.map((d, index)=>
-                <ScrollNum key={index} digit={d} />
+                <Consumer key={index}>
+                  {value => <ScrollNum  digit={d} initHeight = {parseInt(value.digitBox.height)}/>}
+                </Consumer>
+                
               )
             }
           </div>

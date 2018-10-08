@@ -7,9 +7,7 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 module.exports = {
     mode: 'development',
-    entry: {
-        app: './src/main.js'
-    },
+    entry: ["babel-polyfill", "./src/main.js"],
     devServer: {
         inline: true,
         port: 3000,
