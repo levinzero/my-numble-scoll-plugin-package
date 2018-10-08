@@ -5,11 +5,22 @@ import ScrollPanel from './ScrollPanel'
 
 class App extends React.Component{
 
+    constructor(props){
+        super(props)
+        
+    }
+
+    componentDidMount() {
+
+
+    }
+
+
 
     render(){
 
         return(
-                <ScrollPanel value={100}/>    
+                <ScrollPanel value={this.props.num || 100}/>    
         )   
     }
 }
