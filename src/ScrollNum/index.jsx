@@ -105,7 +105,7 @@ class ScrollNum extends Component {
                                             style={{
                                                 WebkitTransform: `translate3d(0, -${y}px, 0)`,
                                                 transform: `translate3d(0, -${y}px, 0)`,
-                                                ...value.digitScroll
+                                                ...value.digitScroll //if your babel version is less than 7.0, you should change your babel config --add stage that support this synax 
                                             }}
                                         >
                                             {items.map((item, index) => <div key={index} style={{
